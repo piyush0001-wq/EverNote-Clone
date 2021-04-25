@@ -1,0 +1,70 @@
+body {
+  /* color: aliceblue; */
+  background-color: lightgray;
+}
+
+.App {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sideBar {
+  /* flex: 1; */
+  height: 100vh;
+  width: 30%;
+  color: white;
+  overflow-y: auto;
+}
+
+.editor {
+  height: 100vh;
+  width: 70%;
+}
+
+.editor h4 {
+  text-align: center;
+  font-size: 30px;
+}
+
+.quill {
+  height: 100%;
+  box-sizing: border-box;
+  /* float: left; */
+  outline: none;
+  border: none;
+}
+
+.ql-container {
+  box-sizing: border-box;
+  height: calc(100% - 42px);
+  overflow-y: scroll;
+}
+
+.ql-editor {
+  cursor: text;
+}
+
+.MuiListItem-root.Mui-selected {
+  background-color: #d4d8e8 !important;
+}
+
+.no-note-selected {
+  font-size: 48px;
+  position: absolute;
+  top: 50px;
+  left: calc(50% - 165px);
+}
+
+@media (max-width:550px) {
+  .App {
+    flex-direction: column-reverse;
+  }
+  .editor {
+    width: 100%;
+    height: 50vh;
+  }
+  .sideBar {
+    width: 100%;
+  }
+}

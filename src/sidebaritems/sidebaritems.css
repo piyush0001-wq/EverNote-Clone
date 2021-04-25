@@ -1,0 +1,18 @@
+.items {
+  color: black;
+  text-align: center;
+  margin: 0;
+}
+
+.items p {
+  font-weight: 600;
+}
+
+hr {
+  margin: 10px 0;
+}
+
+i:hover {
+  color: red;
+  cursor: pointer;
+}

@@ -1,0 +1,35 @@
+.sidebar {
+  color: black;
+}
+
+button {
+  outline: none;
+  border: none;
+  background: grey;
+  color: white;
+  z-index: 11;
+  position: relative;
+  width: 100%;
+  font-size: 25px;
+  padding: 8px 15px;
+}
+
+ul {
+  list-style: none;
+  padding: 0 20px;
+}
+
+button:hover {
+  background: rgb(46, 46, 46);
+  transition: 0.2s;
+}
+
+input {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  font-size: 17px;
+  outline: none;
+  border: none;
+  background: transparent;
+}

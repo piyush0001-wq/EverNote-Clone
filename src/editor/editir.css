@@ -1,0 +1,16 @@
+.editorContainer {
+  height: 100%;
+  width: 99%;
+  font-size: 35px;
+  box-shadow: -5px 0px 30px rgba(255, 255, 255, 0.89);
+  border: 1px solid rgba(0, 0, 0, 0.192);
+}
+
+.editorContainer h2 {
+  margin: 0 10px;
+  font-size: 40px;
+}
+
+.titleInput {
+  font-size: 35px;
+}

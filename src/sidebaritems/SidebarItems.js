@@ -4,20 +4,20 @@ import { removeHTMLTags } from '../helpers'
 import { db } from '../firebase'
 
 function SidebarItems({ note,
-  index, id,
-  selectedNoteIndex,
+  id,
   selectNote,
   deletenote }) {
 
 
+
   return (
     <div className="items">
-      <div key={index} className="note_item" onClick={() => selectNote(note, index)}>
+      <div className="note_item" onClick={() => selectNote(note.title, note.body, note.id)}>
         <h3>{note.title}</h3>
         {
           note.body ? <p>{removeHTMLTags(note.body.substring(0, 30) + '......')}</p> : null
         }
-        {/* <p>{note.body}</p> */}
+        {/* <p>{note.id}</p> */}
       </div>
       <p onClick={() => deletenote(note)}><i class="fas fa-trash"></i></p>
     </div>

@@ -6,10 +6,11 @@ import Editor from './editor/Editor'
 
 function App() {
 
-  const [selectedNoteIndex, setSelectedNoteIndex] = useState(null);
-  const [selectedTitle, setSelectedTitle] = useState(null);
+
   const [notes, setNotes] = useState([]);
-  const [noteUpdate, setNoteUpdate] = useState([]);
+  const [selectedQuillBody, setselectedQuillBody] = useState('')
+  const [selectedQuillId, setselectedQuillId] = useState('')
+  const [selectedQuillTitle, setselectedQuillTitle] = useState('')
 
   useEffect(() => {
     db.collection('notes').onSnapshot(snapshot => {
@@ -18,38 +19,27 @@ function App() {
         data['id'] = doc.id;
         return data;
       })
-      console.log(notes)
       setNotes(notes)
-      // console.log(setNotes)
+      console.log(notes)
     })
 
   }, [setNotes])
 
-  function selectedNote(note, index) {
-    console.log(`selected note is ${note.title} with index ${index} from app.js`);
-    let selectnote = note;
-    console.log(`${selectnote} from app.js`)
-    setSelectedTitle(note);
-    // console.log(selectedTitle)
+  function selectedNote(title, body, id) {
+    console.log(`title is ${title} and body is ${body}`);
+    setselectedQuillBody(body)
+    setselectedQuillTitle(title)
+    setselectedQuillId(id)
   }
 
-  function noteUpdated(id, text) {
-    console.log(text)
-    db.collection('notes').doc(id).update({
-      body: text
-    })
-  }
 
   return (
     <div className="App">
       <div className="sideBar">
-        <SideBar selectedNoteIndex={selectedNoteIndex} notes={notes} selectedNote={selectedNote} />
+        <SideBar notes={notes} selectedNote={selectedNote} />
       </div>
       <div className="editor">
-        {
-          selectedTitle ? <Editor selectedTitle={selectedTitle} noteUpdated={noteUpdated} /> : <h4>Select any note to display</h4>
-        }
-
+        <Editor selectedQuillTitle={selectedQuillTitle} selectedQuillBody={selectedQuillBody} selectedQuillId={selectedQuillId} />
       </div>
     </div>
   );

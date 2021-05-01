@@ -7,7 +7,7 @@ import { db } from '../firebase'
 function Sidebar({ notes, selectedNoteIndex, selectedNote }) {
   const [addingNote, setAddingNote] = useState(false)
   const [title, setTitle] = useState('')
-  const [selecttitle, setselecttitle] = useState('')
+
 
 
   function newNoteBtn() {
@@ -20,21 +20,14 @@ function Sidebar({ notes, selectedNoteIndex, selectedNote }) {
   }
 
   function addNewNote() {
-    console.log(`${title.body} added `)
+    console.log(`${title} added `)
     db.collection('notes').add({
       title: title.title,
-      body: ''
+      body: '..'
     })
-
-
   }
 
-  // function selectnote(note) {
-  //   console.log(`selected note is ${note.title}`)
-  //   // setselecttitle("hey")
-  //   selectedNote(note.title)
-  //   // console.log(selecttitle)
-  // }
+
 
   function deleteNote(note) {
     // console.log(`note deleted is ${note.id}`)
@@ -43,7 +36,9 @@ function Sidebar({ notes, selectedNoteIndex, selectedNote }) {
       db.collection('notes').doc(note.id).delete();
     }
   }
-  // console.log(notes)
+
+
+
   if (notes) {
     return (
       <div className="sidebar">
@@ -66,7 +61,7 @@ function Sidebar({ notes, selectedNoteIndex, selectedNote }) {
               notes.map((note, index, id) => {
                 return (
                   <li key={index} >
-                    <SidebarItems note={note} id={id} index={index} selectedNoteIndex={selectedNoteIndex} selectNote={() => selectedNote(note, index)} deletenote={deleteNote} />
+                    <SidebarItems note={note} id={id} selectNote={selectedNote} deletenote={deleteNote} />
 
                     <hr />
                   </li>

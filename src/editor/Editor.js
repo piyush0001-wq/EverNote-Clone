@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactQuill from 'react-quill'
-import debounce from '../helpers'
 import { useState, useEffect } from 'react'
 import './editor.css'
 import { db } from '../firebase'
@@ -8,9 +7,8 @@ import { db } from '../firebase'
 function Editor({ selectedQuillTitle, selectedQuillBody, selectedQuillId }) {
 
   const [timeoutHandler, settimeoutHandler] = useState()
-  const [text, setText] = useState(selectedQuillBody)
-  const [title, setTitle] = useState('')
-  const [id, setId] = useState('')
+  const [text, setText] = useState()
+
 
   useEffect(() => {
     setText(selectedQuillBody)
@@ -20,9 +18,7 @@ function Editor({ selectedQuillTitle, selectedQuillBody, selectedQuillId }) {
 
   function changeSelectedBody(e) {
     setText(e)
-    // db.collection('notes').doc(selectedQuillId).update({
-    //   body: 'updateddd'
-    // })
+
   }
 
   useEffect(() => {
@@ -30,13 +26,16 @@ function Editor({ selectedQuillTitle, selectedQuillBody, selectedQuillId }) {
     settimeoutHandler(
       setTimeout(() => {
         console.log(text)
-        db.collection('notes').doc(selectedQuillId).update({
-          body: text
-        })
+        if (selectedQuillId) {
+
+          db.collection('notes').doc(`${selectedQuillId}`).update({
+            body: text
+          })
+        }
       }, 2000)
     )
 
-  }, [text])
+  }, [text, selectedQuillId])
 
   return (
     <div className="editor_container">
